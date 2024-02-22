@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  findFilerUser,
   logOut,
   login,
   register,
@@ -17,5 +18,6 @@ router.post("/register", userRegisterValidator, register);
 router.post("/login", userLoginValidator, login);
 router.get("/validate-token", verifyToken, validateToken);
 router.post("/logout", logOut);
+router.post("/users", findFilerUser);
 
 export default router;

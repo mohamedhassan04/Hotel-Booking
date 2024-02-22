@@ -103,4 +103,21 @@ const logOut = expressAsyncHandler(async (req: Request, res: Response) => {
   res.send();
 });
 
-export { register, login, validateToken, logOut };
+const findFilerUser = expressAsyncHandler(
+  async (req: Request, res: Response) => {
+    const { firstName, lastName } = req.body.query;
+    try {
+      let users = await User.find().select("-password");
+
+      if (users && firstName != "") {
+        users = users.filter((user) => user.firstName === firstName);
+      } else if (users && lastName != "") {
+        users = users.filter((user) => user.lastName === lastName);
+      }
+
+      res.status(200).json(users);
+    } catch (error) {}
+  }
+);
+
+export { register, login, validateToken, logOut, findFilerUser };
