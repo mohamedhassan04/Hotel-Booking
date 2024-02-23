@@ -9,8 +9,8 @@ const router = express.Router();
 router.post(
   "/add-hotel",
   verifyToken,
-  hotelValidator,
   upload.array("imageFiles", 6),
+  hotelValidator,
   addHotel
 );
 
