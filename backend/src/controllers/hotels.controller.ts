@@ -46,4 +46,15 @@ const addHotel = expressAsyncHandler(async (req: Request, res: Response) => {
   }
 });
 
-export { addHotel };
+const getHotelDetails = expressAsyncHandler(
+  async (req: Request, res: Response) => {
+    try {
+      const hotels = await Hotel.find({ userId: req.userId });
+      res.status(200).json(hotels);
+    } catch (error) {
+      res.status(500).json({ message: "Error fetching hotels" });
+    }
+  }
+);
+
+export { addHotel, getHotelDetails };
