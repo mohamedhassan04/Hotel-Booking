@@ -6,6 +6,7 @@ import log from "./utils/logger";
 import connection from "./config/dbConfig";
 import userRouter from "./routes/user.route";
 import hotelRouter from "./routes/hotels.route";
+import hotelSearchRouter from "./routes/searchHotels.route";
 import cookieParser from "cookie-parser";
 import { v2 as cloudinary } from "cloudinary";
 
@@ -37,6 +38,7 @@ app.get("/api/test", async (req: Request, res: Response) => {
 
 app.use("/api/user", userRouter);
 app.use("/api/hotel", hotelRouter);
+app.use("/api/query", hotelSearchRouter);
 
 app.listen(port, () => {
   log.info(`Server started on port ${port}`);
